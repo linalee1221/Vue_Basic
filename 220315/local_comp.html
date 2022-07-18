@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            background: rgb(255, 124, 194);
+            color: white;
+            padding: 10px 20px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .article {
+            background: rgb(124, 251, 255);
+            color: blue;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- vue html 영역 -->
+    <div id="app">
+        <child-component></child-component>
+        <child-article></child-article>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="local_comp.js"></script>
+    <!-- 위 js파일에 뷰를 작성 -->
+</body>
+</html>

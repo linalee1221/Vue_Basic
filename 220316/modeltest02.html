@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h2>입력한 문장과 문자수를 표시하는 예제</h2>   
+     <!-- 뷰영역  -->
+     <div id="app">
+         <textarea v-model="myText"></textarea>
+         <p>문장은, {{ myText }}</p>
+         <p>문자 수는, {{ myText.length }} 자 입니다.</p>
+     </div>
+
+     <script>
+         new Vue({
+             el: "#app",
+             data: {
+                 myText: "오늘은 날씨가 좋아요! 햇살이 눈부셔요~."
+             }
+         });
+     </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <!-- 뷰 영역 -->
+    <!-- v-bind를 빼고 :만 넣어도 작동함. -->
+    <div id="app">
+    <!-- 1. 네이버 연결 -->
+    <a :href="myURL"><h1>네이버로 이동하기</h1></a>
+    <br>
+    <!-- 2. 이미지 표시 -->
+    <p><img :src="myImage"><br><h1>이미지 표시</h1></img></p>
+    <br>
+    <!-- 3. 텍스트를 왼쪽 정렬 -->
+    <p :align="myAlignLeft">텍스트를 왼쪽 정렬</p>
+    <!-- 4. 텍스트를 가운데 정렬 -->
+    <p :align="myAlignCenter">텍스트를 가운데 정렬</p>
+    <!-- 5. 텍스트를 오른쪽 정렬 -->
+    <p :align="myAlignRight">텍스트를 오른쪽 정렬</p>
+    <!-- 6. color를 red로 바꾸는데 v-bind변수 이용 -->
+    <p :style="{color: myColor}">인라인을 이용해서 글자색을 빨간색으로</p>
+    </div>
+
+    <script>
+         new Vue({
+            el: "#app",
+            data: {
+                myURL: "http://www.naver.com",
+                myImage: "image/boy.png",
+                myAlignLeft: "left",
+                myAlignCenter: "center",
+                myAlignRight: "right",
+                myColor: "red",
+            }
+        });
+    </script>
+</body>
+</html>

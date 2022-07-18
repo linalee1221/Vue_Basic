@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <!-- 뷰 영역 -->
+    <div id="app_comp">
+        <h1>Vue.js - 컴포넌트 기본 실습</h1>
+            <ol>
+                <todo-item
+                    v-for="item in groceryList"
+                    v-bind:todo="item"
+                    v-bind:key="item.id">
+                </todo-item>
+            </ol>
+    </div>
+    
+    <script>
+        // 전역 컴포넌트
+        Vue.component("todo-item", {
+            props: ['todo'],
+            template: "<li>{{ todo.text }}</li>"
+        });
+        // 부모 컴포넌트(뷰가 항상 최상위 부모 위치에 있다.
+        // 뷰 안에 생성한 것은 뷰의 자식이 된다.)
+        let app_comp = new Vue({
+            el: "#app_comp",
+            data: {
+                groceryList: [
+                    { id:0, text:"삼겹살"},
+                    { id:1, text:"돼지갈비"},
+                    { id:2, text:"오리호박찜"},
+                    { id:3, text:"뚝배기소고기"}
+                ]
+            }
+
+        });
+    </script>
+</body>
+</html>

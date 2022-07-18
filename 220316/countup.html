@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h2>클릭하면 카운트가 올라갑니다.</h2>
+    <!-- Vue가 들어갈 영역 -->
+    <div id="app">
+        <p>{{ count }}회</p>
+        <button v-on:click="countup">카운터업</button>
+        <!-- 카운트 다운 버튼 -->
+        <button v-on:click="countdown">카운터다운</button>
+    </div>
+    
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                count:0
+            },
+            methods: {
+                countup : function() {
+                    this.count++;
+                },
+                countdown : function() {
+                    this.count--;
+                }
+            },
+            },
+            // 메소드 countdown
+           
+
+        )
+    </script>
+</body>
+</html>

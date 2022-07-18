@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h2>객체 배열의 값을 표시하는 연습문제</h2>
+    <!-- 뷰 영역 -->
+    <div id="app">
+        <!-- 1번째 객체: name: "다즐링", price: 600 -->
+        <!-- 2번째 객체: name: "얼그레이", price: 500 -->
+        <!-- 3번째 객체: name: "실론", price: 500 -->
+        <!-- 객체배열의 모든 값을 출력 -->
+        <p> {{ myObject }} </p>
+        <!-- 객체배열 중에서 2번째 원소를 선택해서 name price원 출력 -->
+        <p> {{ myObject[1].name + " " + myObject[1].price + "원" }} </p>
+        <p></p>
+    </div>
+
+    <script>
+        
+        // 뷰 생성
+        new Vue({
+            el: "#app",
+            data: {
+                myObject: [
+                    { name: "다즐링", price: 600},
+                    { name: "얼그레이", price: 500},
+                    { name: "실론", price: 600}
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

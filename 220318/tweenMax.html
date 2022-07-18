@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown.js/0.6.0-beta1/markdown.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>TweenMax 테스트</h2>
+    <button id="movebtn" type="button" onclick="myMove()">이동</button>
+
+    <script>
+        function myMove() {
+            // movebtn은 x 프로퍼티를 1초에 500 증가시킨다.
+            TweenMax.to("#movebtn", 1, { x: "500px" })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 1초동안 요소 이동하기 */
+        .v-move {
+            transition: transform 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 토글버튼 : 초기값은 false - 오름차순, true - 내림차순  -->
+        <p><button v-on:click="order=!order">변경하기</button></p>
+        <!-- transition-group으로 사용할 태그 속성 지정 -->
+        <transition-group tag="ul">
+            <li v-for="item in sortedList" v-bind:key="item.id">
+                {{ item.name }} {{ item.price }} 원
+            </li>
+        </transition-group>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    list: [
+                        { id: 1, name: "사과", price: 1000 },
+                        { id: 2, name: "바나나", price: 2000 },
+                        { id: 3, name: "딸기", price: 3000 }
+                    ],
+                    order: false
+                };
+            },
+            computed: {
+                sortedList: function() {
+                    // lodash의 orderBy함수 사용하기
+                    // 첫번째 매개변수 : 객체배열
+                    // 두번째 매개변수 : 정렬하고 싶은 객체의 속성
+                    // 세번째 매개변수 : 오름차순("asc"), 내림차순("desc")
+                    return _.orderBy(this.list, "price", this.order ? "asc" : "desc")
+                }
+            }
+        });
+    </script>
+</body>
+</html>

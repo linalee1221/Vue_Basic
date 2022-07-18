@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 뷰 영역 -->
+    <div id="app">
+        <p>x <input v-model="x"></p>
+        <p>y <input v-model="y"></p>
+        <p>---------------------</p>
+        <p>= <span v-text="result"></span></p>
+    </div>
+    
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                x: 0,
+                y: 0,
+                lastResult: 0
+            },
+            computed: {
+                result: function() {
+                    this.lastResult = Number(this.x) + Number(this.y);
+                    return this.lastResult;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

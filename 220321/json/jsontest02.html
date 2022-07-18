@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <h2>JSON 파일을 읽어들여 트랜지션 효과를 주는 예제</h2>
+    <div id="app">
+        <transition-group>
+            <div v-for="item in dataArray" v-bind:key="item.title">
+                <my-product v-bind:object="item"></my-product>
+            </div>
+        </transition-group>
+
+        <button v-on:click="sortData">정렬</button>
+        <button v-on:click="shuffleData">셔플</button>
+        <input type="file" v-on:change="loadData" />
+    </div>
+
+    <script>
+        // 자식 컴포넌트 객체 정의
+        let MyComponent = {
+            props: ["object"],
+            template:
+                /*html*/
+                `
+                <div style="width:300px; backgroundColor:#ffddaa;">
+                    <p style="backgroundColor:#ffa95e">{{ object.title }}</p>    
+                    <p>해설 : {{ object.body }} </p>
+                </div>
+                `
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    dataArray: [
+                        { title: "AAA", body: "aaa" },
+                        { title: "BBB", body: "bbb" },
+                        { title: "CCC", body: "ccc" }
+                    ],
+                };
+            },
+            components: {
+                "my-product": MyComponent
+            },
+            methods: {
+                // 목록 정렬
+                sortData: function () {
+                    // 로다쉬 정렬함수 : orderBy
+                    // 첫번째 매개변수 : 객체배열
+                    // 두번째 매개변수 : 정렬할 속성
+                    // 세번째 매개변수 : 오름차순 asc, 내림차순 desc
+                    // return : 새로 정렬된 객체배열
+                    this.dataArray = _.orderBy(this.dataArray, "title", "asc");
+                },
+                // 목록 셔플
+                shuffleData: function () {
+                    // 로다시 셔플함수 : shuffle
+                    // 첫번째 매개변수 : 객체배열
+                    // retrn : 새로 셔플된 객체배열
+                    this.dataArray = _.shuffle(this.dataArray);
+                },
+                // JSON 파일 업로드해서 객체배열로 저장
+                loadData: function (event) {
+                    let file = event.target.files[0];
+                    if (file) {
+                        // 텍스트 또는 JSON파일 읽어들이는 함수
+                        let reader = new FileReader();
+                        let vm = this;
+                        // 텍스트로서 읽어들이는 함수
+                        reader.readAsText(file);
+
+                        reader.onload = function (event) {
+                            vm.dataArray = JSON.parse(event.target.result);
+                        };
+                    }
+                },
+            },
+        });
+    </script>
+    <style>
+        /* 1초동안 요소 이동하기 */
+        .v-move {
+            transition: transform 1s;
+        }
+    </style>
+</body>
+
+</html>

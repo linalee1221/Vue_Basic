@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>간단한 계산기</h2>
+    <!-- 뷰 영역 -->
+    <div id="app">
+        <!-- 숫자 입력 박스 -->
+        <input v-model.number="x">
+        <!-- 숫자 입력 박스 -->
+        <input v-model.number="y">
+        <br><br>
+        <button @click="plus">덧셈</button>
+        <button @click="minus">뺄셈</button>
+        <button @click="multiple">곱셈</button>
+        <button @click="division">나눗셈</button>
+        <!-- 결과 출력 -->
+        <p>결과는 {{ result }} 입니다.</span></p>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                x: 0,
+                y: 0,
+                result: 0
+            },
+            methods: {
+                plus: function() {
+                    this.result = this.x + this.y;
+                    return this.result;
+                },
+                minus: function() {
+                    this.result = this.x - this.y;
+                    return this.result;
+                },
+                multiple: function() {
+                    this.result = this.x *this.y;
+                    return this.result;
+                },
+                division: function() {
+                    this.result = this.x / this.y;
+                    return this.result;
+                },
+     
+            },
+        });
+    </script>
+</body>
+</html>

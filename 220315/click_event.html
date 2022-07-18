@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app1 {
+            background: cyan;
+            color: blue;
+            padding: 4px;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        #app2 {
+            background: pink;
+            color: red;
+            padding: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<!-- html -->
+    <div id="app1">
+        <div>
+            <p>{{ message }}</p>
+        </div>
+        <button v-on:click="changeMessage">메세지 바꾸기</button>
+    </div>
+    
+    <div id="app2">
+        <div>
+            <p>{{ message }}</p>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- vue -->
+<script>
+    let vm1 = new Vue({
+        el: "#app1",
+        data: {
+            message: "첫번째 뷰 인스턴스(Vue Instance)",
+        },
+        methods: {
+            changeMessage() {
+                vm2.message = "모두가 행복했으면 좋겠어요."
+
+            }
+        }
+    });
+
+    let vm2 = new Vue({
+        el: "#app2",
+        data: {
+            message: "두번째 뷰 인스턴스(Vue Instance)",
+        },
+    });
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h2>남은시간(초)를 감시하여 표시하고 0초가 되면 얼럿을 띄우는 예제</h2>
+    <div id="app">
+        <p>앞으로 [ {{ restSec }} ]</p>
+        <button v-on:click="startTimer">START</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                restSec: 5,
+                timerObj: null
+            },
+            methods: {
+                startTimer: function() {
+                    // 남은 시간 5초
+                    this.restSec = 5;
+                    // 1초에 1씩 감소시키는 부분
+                    this.timerObj = setInterval(() => {
+                        this.restSec--;
+                    }, 1000);
+                }
+            },
+            watch: {
+                // 남은 초를 감시
+                restSec: function() {
+                    // 0초가 되면 얼럿을 띄우고 타이머를 멈춘다.
+                    if (this.restSec <= 0) {
+                        alert("제한 시간이 다 되었습니다.");
+                        clearInterval(this.timerObj);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

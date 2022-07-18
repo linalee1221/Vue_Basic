@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .imgDiv {
+            margin: 4px;
+            border: 4px solid pink;
+            display: inline-block;
+            padding: 5px;
+        }
+
+        img {
+            width: 240px;
+            height: 180px;
+            padding: 3px;
+        }
+
+        a {
+            text-align: center;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 뷰 영역 -->
+    <div id="app">
+        <div class="imgDiv" v-for="img in images" :key="img.text">
+            <a v-bind:href="img.url">{{ img.text }}</a>
+            <img v-bind:src="img.src"></img>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                images: [
+                    { text: "암스테르담", src: "./img/amsterdam.jpg",
+                    url:"http://www.naver.com"},
+                    { text: "파리", src: "./img/paris.jpg",
+                    url:"http://www.google.com"},
+                    { text: "프라하", src: "./img/praha.jpg",
+                    url:"http://www.daum.net"},
+                    { text: "암스테르담", src: "./img/vienna.jpg",
+                    url:"http://www.austria.info/kr"},
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

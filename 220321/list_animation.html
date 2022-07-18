@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h2>버튼을 누르면 리스트가 증감할 때 애니메이션 효과를 주는 예제</h2>    
+    <!-- 뷰 영역 -->
+    <div id="app">
+        <transition-group>
+            <li v-for="item in dataArray" v-bind:key="item"> {{ item }} </li>
+        </transition-group>
+        <label><input v-model="addItem" placeholder="추가할 리스트"></label>
+        <button v-on:click="addList">추가</button>
+        <button v-on:click="removeLast">맨 뒤 1개 삭제</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                // 데이터 초기화
+                dataArray: ["벚꽃", "산수유", "진달래", "철죽"],
+                addItem: ""
+            },
+            methods: {
+                // 리스트 추가 함수
+                addList: function() {
+                    this.dataArray.push(this.addItem);
+                    this.addItem = "";
+                },
+                // 리스트 삭제 함수
+                removeLast: function() {
+                    let lastIdx = this.dataArray.length -1;
+                    this.dataArray.splice(lastIdx, 1);
+                }
+            },
+        });
+    </script>
+
+    <style>
+        /* 나타나고 있을때와 사라질때 시간 0.5초 */
+        .v-enter-active, .v-leave-active {
+            transition: 0.5s;
+        }
+
+        /* 나타나기 전의 상태와 사라진 상태 투명도는 0, 오른쪽으로 50 이동 */
+        .v-enter, .v-leave-to {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+    </style>
+</body>
+</html>

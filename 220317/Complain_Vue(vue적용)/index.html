@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5 Basic Page</title>
+    <link rel="stylesheet" href="css/commons.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/section.css">
+
+    <!-- vue cdn 링크 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+    <!-- Import Header Component -->
+    <script src="./components/header.js" defer></script>
+    <!-- Import Navigation Component -->
+    <script src="./components/nav.js" defer></script>
+    <!-- Import Content Component -->
+    <script src="./components/content.js" defer></script>
+    <!-- Import Footer Component -->
+    <script src="./components/footer.js" defer></script>
+    
+    <!-- Import main Component : 메인은 항상 제일 마지막에 적용(vue 연결한 것) -->
+    <script src="js/main.js" defer></script>
+ 
+
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/commons.js"></script>
+</head>
+<body>
+    <!-- 뷰 영역 -->
+    <div id="app">
+        <!-- header component 추가 -->
+        <header-component></header-component>
+
+        <!-- nav component 추가 -->
+        <nav-component></nav-component>
+
+        <!-- content component 추가 -->
+        <content-component></content-component>
+
+        <!-- footer component 추가 -->
+        <footer-component></footer-component>
+
+    </div>
+</body>
+</html>

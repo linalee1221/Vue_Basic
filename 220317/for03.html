@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>구구단 5단을 리스트로 표시하는 예제</h2>
+    <div id="app">
+        <ul>
+            <!-- 출력 형태 -->
+            <!-- 1 x 5 = 5 -->
+            <!-- 2 x 5 = 10 -->
+            <!-- 3 x 5 = 15 -->
+            <li v-for="n in 9">{{ n }} x 5 = {{ n * 5 }}</li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+        });
+    </script>
+</body>
+</html>

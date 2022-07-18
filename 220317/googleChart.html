@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https:www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>구글 차트로 원그래프를 그리는 예제</h2>
+    <h3>선호하는 점심 메뉴 투표</h3>
+
+    <!-- 구글 차트 그리는 영역 -->
+    <div id="chart_div" style="height: 500px"></div>
+    <script>
+        // 그래프에 사용할 데이터를 정의
+        let orgdata = [
+            ["종류", "개수"],
+            ["도시락", 3],
+            ["갈비탕", 4],
+            ["오므라이스", 3],
+            ["짬뽕", 1],
+            ["비빔밥", 3],
+            ["메밀소바", 1]   
+        ];
+        // 구글 차트를 그리기 위한 초기화 펑션
+        google.charts.load("current", {package: ["corechart"]});
+        google.charts.setOnLoadCallback(drawBasic);
+
+        // 구글 차트를 그리는 펑션
+        function drawBasic() {
+            let data = google.visualization.arrayToDataTable(orgdata);
+            let options = {title: "선호하는 점심", "is3D": true};
+            let chart = new google.visualization.PieChart(
+                document.getElementById("chart_div")
+            );
+            chart.draw(data, options);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>클릭하면 지정된 값만큼 증가시키는 예제</h2>
+    <div id="app">
+        <!-- 카운트 수를 표시 -->
+        <p>입력된 수가 {{ count }} 만큼 증가하였습니다.</p>
+
+        <!-- 클릭하면 3증가 -->
+        <!-- <button @click="threeClick">3씩 증가</button> -->
+        <button @click="countUp(3)">3씩 증가</button>
+
+        <!-- 클릭하면 10증가 -->
+        <!-- <button @click="tenClick">10씩 증가</button> -->
+        <button @click="countUp(10)">10씩 증가</button>
+
+        <!-- 클릭하면 100증가 -->
+        <!-- <button @click="mClick">100씩 증가</button> -->
+        <button @click="countUp(100)">100씩 증가</button>
+    </div>
+
+    <script>
+        // 뷰 생성
+        // new Vue({
+        //     el: "#app",
+        //     data: {
+        //         count: 0
+        //     },
+        //     methods: {
+        //         threeClick: function() {
+        //             this.count += 3;
+        //         },
+        //         tenClick: function() {
+        //             this.count += 10;
+        //         },
+        //         mClick: function() {
+        //             this.count += 100;
+        //         }
+        //     },
+        // });
+
+        // 펑션을 하나만 만드는 경우
+        new Vue({
+            el: "#app",
+            data: {
+                count: 0
+            },
+            methods: {
+                countUp: function(value) {
+                    this.count += value;
+                }
+            },
+        });
+    </script>
+</body>
+</html>

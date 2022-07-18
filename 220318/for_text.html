@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .strong {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 뷰 영역 -->
+    <div id="app">
+        <button v-on:click="doAdd">몬스터 추가하기</button>
+        <!-- 아래 데이터를 목록으로 만들어서 출력 -->
+        <!-- 마지막 데이터는 hp>300 이상이면 "강하다" 출력 -->
+        <ul>
+            <li v-for="item in list"
+            v-bind:class="{strong: item.hp > 300}">{{ item.id }}. {{ item.name }} HP : {{ item.hp }}
+            <span v-if="item.hp >= 300">강하다!</span></li>
+            <!-- li 태그 안에서 if 같이 돌리기 -->
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                // 객체 배열
+                // id : 1, name: "슬라임", hp: 100
+                // id : 2, name: "고블린", hp: 200
+                // id : 3, name: "드래곤", hp: 500
+                list: [
+                    {id: 1, name: "슬라임", hp: 100},
+                    {id: 2, name: "고블린", hp: 200},
+                    {id: 3, name: "드래곤", hp: 500}
+                ]
+            },
+            methods: {
+                doAdd: function() {
+                    this.list.push({id: 10, name: "골드드래곤", hp: 1000});
+                }
+            },
+        });
+    </script>
+</body>
+</html>

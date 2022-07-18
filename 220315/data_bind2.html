@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h3>JavaScript 표현식1</h3>
+        <span>{{ number * 3 }}</span>
+        <br>
+        <br>
+        <h3>JavaScript 표현식2</h3>
+        <span>{{ condition ? "True" : "False" }}</span>
+        <br>
+        <br>
+        <h3>JavaScript 표현식3</h3>
+        <span>{{ message.split("").reverse().join("") }}</span>
+        <br>
+        <br>
+        <h3>JavaScript 표현식4</h3>
+        <span v-bind:id='"list-" + addId'>{{ addId }}</span>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </div>
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                number: 15,
+                condition: true,
+                message: "hello world",
+                addId: "first"
+            }
+        });
+    </script>
+    
+</body>
+</html>

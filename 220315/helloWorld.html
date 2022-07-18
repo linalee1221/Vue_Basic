@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>첫번째 뷰</p>
+    <div id="app1">
+        {{ message }}
+    </div>
+    <br>
+    <p>두번째 뷰</p>
+    <div id="app2">
+        {{ msg }}
+    </div>
+    <br>
+    <p>세번째 뷰</p>
+    <div id="app3">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 객체를 만들 때는 new를 쓴다
+        new Vue({
+            el: "#app1",
+            data: {
+                message: "Hello Vue.js!"
+            }
+        });
+
+        // 연습문제 #1
+        // html 새로운 뷰를 만들고 출력해보세요
+        // 출력 : 또다른 뷰를 만들었습니다.
+
+        new Vue({
+            el: "#app2",
+            data: {
+                msg: "또다른 뷰를 만들었습니다!"
+            }
+        });
+       
+        // 세번째 뷰
+       
+        new Vue({
+            el: "#app3",
+            data: {
+                msg: "세번째 뷰 : 템플릿으로 만들었습니다!"
+            },
+            template: `<h3>{{ msg }}</h3>`
+        });
+
+    </script>
+</body>
+</html>

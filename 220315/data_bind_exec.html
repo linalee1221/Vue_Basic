@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- html 태그 부분 -->
+    <div id="app">
+        <h3>첫번째 라인</h3>
+        <span>{{ message }}</span>
+        <br>
+        <br>
+        <h3>두번째 라인</h3>
+        <span>{{ number * number }}</span>
+        <br>
+        <br>
+        <h3>세번째 라인</h3>
+        <span>{{ condition ? "맞습니다" : "틀립니다" }}</span>
+        <br>
+        <br>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    // 뷰 생성부분
+
+    // 첫번째 라인은 "안녕하세요 이은송입니다." 출력
+    // 두번째 라인은 숫자의 제곱을 출력
+    // 세번째 라인은 변수가 참이면 "맞습니다." , 거짓이면 "틀립니다." 출력
+
+    let app = new Vue({
+        el: "#app",
+        data: {
+            message: "안녕하세요 이은송입니다.",
+            number: 15,
+            condition: true 
+        }
+    });
+    
+    </script>
+</body>
+</html>

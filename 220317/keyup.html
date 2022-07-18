@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Enter 키를 누르면 얼럿을 표시하는 예제</h2>
+    <div id="app">
+        <input v-on:keyup.enter.shift="showAlert" v-model="myText">
+        <p></p>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                myText: "Hello!!"
+            },
+            methods: {
+                showAlert: function() {
+                    alert("Shift + Enter키를 눌렀습니다.");
+                }
+            },
+        });
+    </script>
+</body>
+</html>

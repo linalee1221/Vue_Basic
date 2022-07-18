@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>퀴즈 맞추기</h2>
+    <!-- dataArray의 item 항목을 화면에 출력 -->
+    <div id="app">
+        <div v-for="item in dataArray" v-bind:key="item.title">
+            <!-- 자식 컴포넌트의 object 속성에 item 데이터를 전송 -->
+            <my-quiz v-bind:object="item"></my-quiz>
+        </div>
+        <br>
+        <button v-if="show" v-on:click="answerQuestion">정답 제출하기</button>
+        <br>
+        <p v-if="showResult">총득점: {{ score }}</p>
+        <!-- quiz.json파일을 읽어들일 부분 -->
+        <p><input type="file" v-on:change="loadData"></p>
+    </div>
+
+    <script>
+        // 지역 자식 컴포넌트 객체 정의
+    let MyQuiz = {
+        props: ["object"],
+        template:
+            /*html*/
+            `
+            <div style="width:600px; backgroundColor:#ffddaa;">
+                <p style="backgroundColor:#ffa95e">
+                문제 {{ object.no }} {{ object.question }} (배점: {{ object.point }})</p>
+                정답 : 
+                <input type="radio" v-model="object.user_answer" value="true"> O &nbsp;
+                <input type="radio" v-model="object.user_answer" value="false"> X
+            </div>
+            `
+    }
+
+    // 부모 뷰 생성
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                // quiz.json 파일을 읽어들여서 배열에 저장할 변수 생성
+                dataArray: [],
+                // 버튼 보이게 하기 위한 변수
+                show: false,
+                // 총득점을 보이게 하기 위한 변수
+                showResult: false,
+                // 총점 점수
+                score: 0
+            }
+        },
+        components: {
+            "my-quiz" : MyQuiz
+        },
+        methods: {
+            // 1. json 파일을 읽어들일 함수
+            // 2. 파일을 불러들인 후 정답 제출하기 버튼이 보여야 함
+            loadData: function(event) {
+                let file = event.target.files[0];
+                    if (file) {
+                        // 텍스트파일 읽어들이는 객체
+                        let reader = new FileReader();
+                        let vm = this;
+
+                        // 텍스트 형태로 읽기
+                        reader.readAsText(file);
+
+                        // json객체로 변환해서 dataArray에 저장
+                        reader.onload = function (event) {
+                            vm.dataArray = JSON.parse(event.target.result);
+                    }
+                }
+                // 정답 버튼 보이게 하기
+                this.show = true;
+            },
+            // 1. dataArray에 들어있는 문자 개수만큼 반복문을 실행
+            // 2. dataArray에 user_answer 값과 실제 답인 answer와 같으면
+            // score에 point 값을 더함
+            // 3. 총득점 부분을 화면에 보이게 함
+            answerQuestion: function() {
+                // 총점을 위한 임시 변수
+                let result = 0;
+                for(let i=0; i<this.dataArray.length; i++) {
+                    if(this.dataArray[i].user_answer == this.dataArray[i].answer) {
+                        // result = result + this.dataArray[i]
+                        result += this.dataArray[i].point;
+                    }
+                }
+                // 총점에 반영
+                this.score = result;
+                // 총득점 변수를 화면에 보이게 함
+                this.showResult = true;
+            }
+        },
+    });
+    </script>
+</body>
+</html>

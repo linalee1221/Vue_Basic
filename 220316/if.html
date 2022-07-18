@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        p {
+            border: 4px solid pink;
+            background: lightgoldenrodyellow;
+        }
+    </style>
+</head>
+<body>
+    <!-- 뷰영역 -->
+    <div id="app">
+        <h3>if directive를 이용한 조건처리</h3>
+        <p v-if="error">에러 발생 : 이미지를 로드하지 못했습니다.</p>
+        <p v-else-if="appear"><img src="image/bear.jpg"></p>
+        <p v-else>에러가 발생하지 않았습니다.</p>
+        <button v-on:click="error = !error">에러 ON-OFF</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                error: false,
+                appear: true
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <h2>금액과 개수를 입력하면 소비세가 포함된 금액을 계산하는 예제</h2>
+    <div id="app">
+        <input type="number" v-model.number="price">원
+        <!-- 1. 개수를 표시하는 입력 박스 추가 -->
+        <input type="number" v-model.number="count">개
+        <!-- 2. 개수를 포함한 총 가격 표시 -->
+        <p>합계: {{sum}} 원</p>
+        <p>소비세 포함 금액 {{ texIncluded }}원</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                price: 100,
+                // 3. 개수 변수 추가
+                count: 1
+            },
+            computed: {
+                // 4. 가격 * 개수 펑션 추가
+                sum: function() {
+                    return this.price * this.count
+                },
+                // price가 변하면 소비세 포함 금액도 자동으로 변환
+                texIncluded: function() {
+                    return this.price * this.count * 1.08;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

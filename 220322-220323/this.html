@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This에 대해서알아보기</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <p> this 간단예제 </p>
+    <!-- <button id="btn">4번 버튼</button> -->
+    <script>
+        // console.log("1. 그냥 씀")
+
+        // // this 정리
+        // // 1. 그냥 씀
+        // let x = this;
+        // console.log(x);
+
+        // console.log("2. 함수안에서 쓴 this")
+
+        // // 2. 함수 안에서 쓴 this
+        // function myFunction() {
+        //     return this;
+        // }
+        // console.log(myFunction());
+
+        // console.log("3. 객체의 메소드로 쓴 this")
+
+        // let person = {
+        //     firstName: "Jone",
+        //     lastName: "Doe",
+        //     fullName: function() {
+        //         return this.firstName + " " + this.lastName;
+        //     }
+        // }
+        // console.log(person.fullName());
+
+        // 4. 이벤트에서 쓴 this
+        // console.log("4. 이벤트에서 쓴 this");
+        // let btn = document.querySelector("#btn");
+        // btn.addEventListener("click", function() {
+        //     console.log("click");
+        //     console.log(this);
+        // })
+        
+        // 5. 객체 생성자에서 쓴 this
+        // console.log("5. 객체 생성자에서 쓴 this")
+        // function Person(name) {
+        //     this.name = name
+        // }
+
+        // 객체 만드는데 생성자 형태로 만드는 방법
+        // let kim = new Person("kim");
+        // let lee = new Person("lee");
+
+        // console.log(kim.name);
+        // console.log(lee.name);
+
+        // 6. 화살표 함수의 this
+        // 객체 정의
+        // 함수 안의 함수 형태에서는 this가 window가 됨
+        // 에러 : undefined
+        console.log("6. 화살표 함수의 this")
+
+        // let Person = function(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.say = function() {
+        //         console.log(this); // 객체 Person {name: "Nana", age: 28}
+
+        //         setTimeout(function() {
+        //             console.log(this);
+        //             console.log(this.name + " is " + this.age + " years old")
+        //         },1000)
+        //     }
+        // };
+        // 객체 생성자 함수를 호출해서 생성
+        // let me = new Person("Nana", 28);
+        
+        // 객체의 함수를 호출
+        // me.say();
+
+
+        
+        // 해결책 : 화살표 함수로 고침 : this가 객체가 됨
+        let Person = function(name, age) {
+            this.name = name;
+            this.age = age;
+            this.say = function() {
+                console.log(this); // 객체 Person {name: "Nana", age: 28}
+
+                //해결책 : 일반 함수 -> 화살표 함수로 고침
+                setTimeout(() => {
+                    console.log(this);
+                    console.log(this.name + " is " + this.age + " years old")
+                },1000)
+            }
+        };
+        let me = new Person("Nana", 28);
+        me.say();
+    </script>
+</body>
+</html>

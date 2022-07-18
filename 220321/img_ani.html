@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        /* 1초동안 투명도, 위치 변화 */
+        .v-enter-active, .v-leave-active {
+            transition: opacity 1s, transform 1s;
+        }
+        /* 출력할때는 왼쪽에서 오른쪽으로 */
+        .v-enter {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        /* 사라질때는 아래로 */
+        .v-leave-to {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p><button v-on:click="show=!show">변경하기</button></p>
+        <transition>
+            <div v-show="show"> 
+            <img src="./image/coffee-pink (1).jpg" alt="girl 이미지"></img>
+                        <!-- alt를 쓰는 이유=이미지가 안뜨면 글로 대체 -->
+        </div>
+        </transition>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                show: true
+            }
+        });
+    </script>
+    
+</body>
+</html>

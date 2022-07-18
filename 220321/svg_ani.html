@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        /* 1초동안 투명도, 위치 변화 */
+        .v-enter-active, 
+        .v-leave-active {
+            transition: all 1s;
+        }
+        /* position -> absoulte */
+        .v-leave-active {
+            position: absolute;
+        }
+        /* 사라질때는 아래로 */
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p><button v-on:click="toggle=!toggle">변경하기</button></p>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <transition>
+                <my-circle v-bind:fill="fill" v-bind:key="fill"></my-circle>
+            </transition>
+        </svg>
+    </div>
+
+    <script>
+        // svg 요소 컴포넌트 정의하기
+        Vue.component("my-circle", {
+            template: "<circle cx='80' cy='75' r='50' v-bind:fill='fill' />",
+            props: {
+                fill: String
+            }
+        })  
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    toggle: false
+                }
+            },
+            computed: {
+                fill: function() {
+                    return this.toggle ? "lightpink" : "skyblue"
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            background: cyan;
+            padding: 6px;
+            color: blue;
+        }
+        .box {
+            background: teal;
+            margin-top: 10px;
+        }
+        .box button {
+            margin: 4px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        {{ name }}
+        <child-component v-on:sendmessage="receivemessage"></child-component>
+    </div>
+
+    <script>
+        // 자식 컴포넌트
+        Vue.component("child-component", {
+            /*html*/
+            template: `<div class="box">
+                        <button @click="sendmessage()">
+                            부모 컴포넌트로 데이터 전달
+                        </button></div>`,
+            methods: {
+                sendmessage: function() {
+                    // 자식에서 부모로 이벤트 신호를 보냄
+                    // 이름 : sendmessage
+                    this.$emit("sendmessage");
+                }
+            }
+        });
+
+        // 부모 컴포넌트라고 생각하면 됨
+        new Vue({
+            el: "#app",
+            data: {
+                name: "$emit을 이용한 데이터 전달"
+            },
+            methods: {
+                receivemessage() {
+                    this.name = "자식 컴포넌트에서 신호를 보냄";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

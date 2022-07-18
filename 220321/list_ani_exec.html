@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 1초동안 요소 이동하기 */
+        .v-move {
+            transition: transform 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="flip-list-demo">
+        <p><button v-on:click="shuffle">셔플</button></p>
+        <!-- transition-group으로 목록을 생성 -->
+        <transition-group tag="ul">
+            <li v-for="item in items" v-bind:key="item">
+                {{ item }}
+            </li>
+        </transition-group>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#flip-list-demo",
+            data() {
+                return {
+                    items: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                }
+            },
+            methods: {
+                shuffle() {
+                    this.items = _.shuffle(this.items);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

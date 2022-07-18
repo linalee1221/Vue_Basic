@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <script>
+        // mixin 객체 정의
+        let mixin = {
+            data() {
+                return {
+                    message: "hello",
+                    foo: "abc"
+                }
+            }
+        }
+        
+        // 부모 뷰
+        new Vue({
+            mixins: [mixin],
+            data() {
+                return {
+                    message: "goodbye",
+                    bar: "def"
+                }
+            },
+            created: function() {
+                console.log(this.$data)
+            }
+        });
+    </script>
+</body>
+</html>
